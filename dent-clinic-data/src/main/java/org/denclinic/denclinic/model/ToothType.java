@@ -1,6 +1,6 @@
 package org.denclinic.denclinic.model;
 
-public class ToothType {
+public class ToothType extends BaseEntity {
     private String disAdi;
     private int disNumarasi;
 

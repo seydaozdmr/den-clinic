@@ -1,6 +1,6 @@
 package org.denclinic.denclinic.model;
 
-public class Tooth {
+public class Tooth extends BaseEntity {
     private ToothType toothType;
     private Patient patient;
 
