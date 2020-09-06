@@ -2,10 +2,11 @@ package org.denclinic.denclinic.services.map;
 
 import org.denclinic.denclinic.model.Dentist;
 import org.denclinic.denclinic.services.CrudService;
+import org.denclinic.denclinic.services.DentistService;
 
 import java.util.Set;
 
-public class DentistMapService extends AbstractMapService<Dentist,Integer> implements CrudService<Dentist,Integer> {
+public class DentistMapService extends AbstractMapService<Dentist,Integer> implements DentistService{
 
     @Override
     public Set<Dentist> findAll() {

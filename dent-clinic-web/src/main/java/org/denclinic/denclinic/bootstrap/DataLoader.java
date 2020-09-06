@@ -1,0 +1,58 @@
+package org.denclinic.denclinic.bootstrap;
+
+import org.denclinic.denclinic.model.Dentist;
+import org.denclinic.denclinic.model.Patient;
+import org.denclinic.denclinic.services.DentistService;
+import org.denclinic.denclinic.services.PatientService;
+import org.denclinic.denclinic.services.map.DentistMapService;
+import org.denclinic.denclinic.services.map.PatientMapService;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+//Becames spring bean
+@Component
+public class DataLoader implements CommandLineRunner {
+    private final PatientService patientService;
+    private final DentistService dentistService;
+
+    public DataLoader() {
+        this.patientService = new PatientMapService();
+        this.dentistService=new DentistMapService();
+
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        Patient hasta1=new Patient();
+        hasta1.setId(1);
+        hasta1.setFirstName("Seyda");
+        hasta1.setLastName("Özdemir");
+
+        patientService.save(hasta1);
+
+        Patient hasta2=new Patient();
+        hasta1.setId(2);
+        hasta1.setFirstName("Hatice");
+        hasta1.setLastName("Norcu Özdemir");
+
+        patientService.save(hasta2);
+        System.out.println("Loading patients...");
+
+        Dentist hekim1=new Dentist();
+        hekim1.setId(1);
+        hekim1.setFirstName("Çetin");
+        hekim1.setLastName("Çalışkan");
+
+        Dentist hekim2=new Dentist();
+        hekim2.setId(1);
+        hekim2.setFirstName("Güray");
+        hekim2.setLastName("Başeğmez");
+
+        dentistService.save(hekim2);
+        dentistService.save(hekim1);
+
+        System.out.println("Loaded dentists.");
+
+
+    }
+}

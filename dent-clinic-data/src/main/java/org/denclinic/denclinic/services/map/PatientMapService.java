@@ -1,12 +1,13 @@
 package org.denclinic.denclinic.services.map;
 
 import org.denclinic.denclinic.model.Patient;
-import org.denclinic.denclinic.services.CrudService;
 
-import java.awt.*;
+import org.denclinic.denclinic.services.PatientService;
+
+
 import java.util.Set;
 
-public class PatientMapService extends AbstractMapService<Patient,Integer> implements CrudService<Patient,Integer> {
+public class PatientMapService extends AbstractMapService<Patient,Integer> implements PatientService {
     @Override
     public Set<Patient> findAll() {
         return super.findAll();
@@ -30,5 +31,10 @@ public class PatientMapService extends AbstractMapService<Patient,Integer> imple
     @Override
     public Patient findById(Integer id) {
         return super.findById(id);
+    }
+
+    @Override
+    public Patient findByLastName(String lastName) {
+        return null;
     }
 }
