@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 //Becames spring bean
+//Bootstrap data implemented in this class
 @Component
 public class DataLoader implements CommandLineRunner {
     private final PatientService patientService;
