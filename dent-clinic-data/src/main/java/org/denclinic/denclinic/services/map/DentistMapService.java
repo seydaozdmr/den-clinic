@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+//Implementing spring config (annotation congif dependency injection and ioc)
 @Service
 public class DentistMapService extends AbstractMapService<Dentist,Integer> implements DentistService{
 
