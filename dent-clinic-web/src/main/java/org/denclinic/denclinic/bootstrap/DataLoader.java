@@ -6,6 +6,7 @@ import org.denclinic.denclinic.services.DentistService;
 import org.denclinic.denclinic.services.PatientService;
 import org.denclinic.denclinic.services.map.DentistMapService;
 import org.denclinic.denclinic.services.map.PatientMapService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -15,10 +16,11 @@ public class DataLoader implements CommandLineRunner {
     private final PatientService patientService;
     private final DentistService dentistService;
 
-    public DataLoader() {
-        this.patientService = new PatientMapService();
-        this.dentistService=new DentistMapService();
-
+    //@Autowired constructor olduğu için @AutoWired annotation'u kullanmamıza gerek yok
+    public DataLoader(PatientService patientService, DentistService dentistService) {
+        //Burada interface kullanıyoruz. interface'in işaret ettiği impl yapısını bulması ve kullanması gerekiyor.
+        this.patientService = patientService;
+        this.dentistService = dentistService;
     }
 
     @Override

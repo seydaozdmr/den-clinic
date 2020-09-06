@@ -1,11 +1,12 @@
 package org.denclinic.denclinic.services.map;
 
 import org.denclinic.denclinic.model.Tooth;
-import org.denclinic.denclinic.services.CrudService;
 import org.denclinic.denclinic.services.ToothService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class ToothMapService extends AbstractMapService<Tooth,Integer> implements ToothService {
     @Override
     public Set<Tooth> findAll() {

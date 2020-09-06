@@ -1,11 +1,12 @@
 package org.denclinic.denclinic.services.map;
 
 import org.denclinic.denclinic.model.Dentist;
-import org.denclinic.denclinic.services.CrudService;
 import org.denclinic.denclinic.services.DentistService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class DentistMapService extends AbstractMapService<Dentist,Integer> implements DentistService{
 
     @Override

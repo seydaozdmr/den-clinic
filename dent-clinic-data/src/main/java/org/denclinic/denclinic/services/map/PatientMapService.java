@@ -1,12 +1,12 @@
 package org.denclinic.denclinic.services.map;
 
 import org.denclinic.denclinic.model.Patient;
-
 import org.denclinic.denclinic.services.PatientService;
-
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class PatientMapService extends AbstractMapService<Patient,Integer> implements PatientService {
     @Override
     public Set<Patient> findAll() {
