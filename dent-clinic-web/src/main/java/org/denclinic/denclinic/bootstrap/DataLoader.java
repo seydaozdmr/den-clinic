@@ -34,25 +34,26 @@ public class DataLoader implements CommandLineRunner {
         patientService.save(hasta1);
 
         Patient hasta2=new Patient();
-        hasta1.setId(2);
-        hasta1.setFirstName("Hatice");
-        hasta1.setLastName("Norcu Özdemir");
+        hasta2.setId(2);
+        hasta2.setFirstName("Hatice");
+        hasta2.setLastName("Norcu Özdemir");
 
         patientService.save(hasta2);
         System.out.println("Loading patients...");
 
         Dentist hekim1=new Dentist();
-        hekim1.setId(1);
+        hekim1.setId(3);
         hekim1.setFirstName("Çetin");
         hekim1.setLastName("Çalışkan");
+        dentistService.save(hekim1);
 
         Dentist hekim2=new Dentist();
-        hekim2.setId(1);
+        hekim2.setId(4);
         hekim2.setFirstName("Güray");
         hekim2.setLastName("Başeğmez");
 
         dentistService.save(hekim2);
-        dentistService.save(hekim1);
+
 
         System.out.println("Loaded dentists.");
 

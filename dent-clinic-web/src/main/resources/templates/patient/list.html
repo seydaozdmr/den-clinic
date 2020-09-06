@@ -1,11 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:ht="http://www.thymeleaf.org1">
+<html lang="en" xmlns:ht="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>List of Patients</title>
 </head>
 <body>
     <h1 th:text="'List of Patients'">Hastaların Listesi</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>İsim</th>
+            <th>Soyisim</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="patient : ${patients}">
+                <td th:text="${patient?.id}">1</td>
+                <td th:text="${patient?.firstName}">Joe</td>
+                <td th:text="${patient?.lastName}">Buck</td>
+            </tr>
+        </tbody>
+    </table>
 
 </body>
 </html>
