@@ -42,13 +42,13 @@ public class DataLoader implements CommandLineRunner {
         System.out.println("Loading patients...");
 
         Dentist hekim1=new Dentist();
-        hekim1.setId(3);
+        hekim1.setId(1);
         hekim1.setFirstName("Çetin");
         hekim1.setLastName("Çalışkan");
         dentistService.save(hekim1);
 
         Dentist hekim2=new Dentist();
-        hekim2.setId(4);
+        hekim2.setId(2);
         hekim2.setFirstName("Güray");
         hekim2.setLastName("Başeğmez");
 
