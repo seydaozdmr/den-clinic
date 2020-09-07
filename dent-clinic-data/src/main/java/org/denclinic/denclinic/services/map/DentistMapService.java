@@ -27,7 +27,7 @@ public class DentistMapService extends AbstractMapService<Dentist,Integer> imple
 
     @Override
     public Dentist save(Dentist object) {
-        return super.save(object.getId(),object);
+        return super.save(object);
     }
 
     @Override

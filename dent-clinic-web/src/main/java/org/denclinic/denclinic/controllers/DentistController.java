@@ -16,6 +16,7 @@ public class DentistController {
 
     @RequestMapping("/dentists")
     public String listDentsits(Model model){
+
         model.addAttribute("dentists",dentistService.findAll());
 
         return "dentist/list";

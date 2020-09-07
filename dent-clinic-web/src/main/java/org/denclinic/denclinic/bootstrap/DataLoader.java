@@ -27,14 +27,14 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Patient hasta1=new Patient();
-        hasta1.setId(1);
+
         hasta1.setFirstName("Seyda");
         hasta1.setLastName("Özdemir");
 
         patientService.save(hasta1);
 
         Patient hasta2=new Patient();
-        hasta2.setId(2);
+
         hasta2.setFirstName("Hatice");
         hasta2.setLastName("Norcu Özdemir");
 
@@ -42,13 +42,13 @@ public class DataLoader implements CommandLineRunner {
         System.out.println("Loading patients...");
 
         Dentist hekim1=new Dentist();
-        hekim1.setId(1);
+
         hekim1.setFirstName("Çetin");
         hekim1.setLastName("Çalışkan");
         dentistService.save(hekim1);
 
         Dentist hekim2=new Dentist();
-        hekim2.setId(2);
+
         hekim2.setFirstName("Güray");
         hekim2.setLastName("Başeğmez");
 

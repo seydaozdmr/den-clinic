@@ -26,7 +26,7 @@ public class ToothMapService extends AbstractMapService<Tooth,Integer> implement
 
     @Override
     public Tooth save(Tooth object) {
-        return super.save(object.getId(),object);
+        return super.save(object);
     }
 
     @Override
