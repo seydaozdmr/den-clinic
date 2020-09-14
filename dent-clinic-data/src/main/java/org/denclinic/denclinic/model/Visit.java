@@ -7,7 +7,7 @@ public class Visit extends BaseEntity {
     private LocalDate date;
     private String description;
     private Set<Tooth> tooths;
-
+    //dişleri set olarak bir bütün olarak ziyaret ettiğini düşündüm
     public LocalDate getDate() {
         return date;
     }
