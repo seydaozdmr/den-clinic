@@ -2,15 +2,17 @@ package org.denclinic.denclinic.bootstrap;
 
 import org.denclinic.denclinic.model.Dentist;
 import org.denclinic.denclinic.model.Patient;
+import org.denclinic.denclinic.model.Tooth;
 import org.denclinic.denclinic.model.ToothType;
 import org.denclinic.denclinic.services.DentistService;
 import org.denclinic.denclinic.services.PatientService;
 import org.denclinic.denclinic.services.ToothTypeService;
-import org.denclinic.denclinic.services.map.DentistMapService;
-import org.denclinic.denclinic.services.map.PatientMapService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.denclinic.denclinic.services.map.AbstractMapService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.HashSet;
+import java.util.Set;
 
 //Becames spring bean
 //Bootstrap data implemented in this class
@@ -20,12 +22,14 @@ public class DataLoader implements CommandLineRunner {
     private final DentistService dentistService;
     private final ToothTypeService toothTypeService;
 
+
     //@Autowired constructor olduğu için @AutoWired annotation'u kullanmamıza gerek yok
     public DataLoader(PatientService patientService, DentistService dentistService, ToothTypeService toothTypeService) {
         //Burada interface kullanıyoruz. interface'in işaret ettiği impl yapısını bulması ve kullanması gerekiyor.
         this.patientService = patientService;
         this.dentistService = dentistService;
         this.toothTypeService=toothTypeService;
+
     }
 
     @Override
@@ -47,14 +51,33 @@ public class DataLoader implements CommandLineRunner {
 
         hasta1.setFirstName("Seyda");
         hasta1.setLastName("Özdemir");
-
+        hasta1.setAdress("Cumhuriyet Mah.");
+        hasta1.setCity("Gazipaşa");
+        hasta1.setTelephone("05437375533");
+        Tooth tooth1=new Tooth();
+        tooth1.setToothType(dis1);
+        tooth1.setPatient(hasta1);
+        Tooth tooth2=new Tooth();
+        tooth2.setToothType(dis2);
+        tooth2.setPatient(hasta1);
+        hasta1.getTooths().add(tooth1);
+        hasta1.getTooths().add(tooth2);
         patientService.save(hasta1);
 
         Patient hasta2=new Patient();
-
         hasta2.setFirstName("Hatice");
         hasta2.setLastName("Norcu Özdemir");
-
+        hasta2.setAdress("Yeni Mah. Yahya Kemal Cad.");
+        hasta2.setCity("Bucak");
+        hasta2.setTelephone("05541213088");
+        Tooth tooth3=new Tooth();
+        tooth3.setToothType(dis1);
+        tooth3.setPatient(hasta2);
+        Tooth tooth4=new Tooth();
+        tooth4.setToothType(dis2);
+        tooth4.setPatient(hasta2);
+        hasta2.getTooths().add(tooth3);
+        hasta2.getTooths().add(tooth4);
         patientService.save(hasta2);
         System.out.println("Loading patients...");
 
@@ -73,7 +96,11 @@ public class DataLoader implements CommandLineRunner {
 
 
         System.out.println("Loaded dentists.");
-
-
+        /*TEST AREA
+        Set<Dentist> dentists=dentistService.findAll();
+        for(Dentist dentist:dentists){
+            System.out.println(dentist.getFirstName()+" "+dentist.getLastName());
+        }
+        */
     }
 }

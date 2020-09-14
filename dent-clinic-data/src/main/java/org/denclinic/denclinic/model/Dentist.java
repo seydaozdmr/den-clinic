@@ -1,13 +1,15 @@
 package org.denclinic.denclinic.model;
 
-public class Dentist extends Person {
-    private Speciality speciality;
+import java.util.Set;
 
-    public Speciality getSpeciality() {
+public class Dentist extends Person {
+    private Set<Speciality> speciality;
+
+    public Set<Speciality> getSpeciality() {
         return speciality;
     }
 
-    public void setSpeciality(Speciality speciality) {
+    public void setSpeciality(Set<Speciality> speciality) {
         this.speciality = speciality;
     }
 }

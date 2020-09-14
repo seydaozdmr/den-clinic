@@ -1,12 +1,13 @@
 package org.denclinic.denclinic.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Patient extends Person {
     private String adress;
     private String city;
     private String telephone;
-    private Set<Tooth> tooths;
+    private Set<Tooth> tooths = new HashSet<>();
 
     public String getAdress() {
         return adress;
