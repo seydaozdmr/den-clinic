@@ -35,6 +35,9 @@ public class PatientMapService extends AbstractMapService<Patient,Integer> imple
         super.delete(object);
     }
 
+    //normalde yukarıda kullandığımız şekilde super'de (AbstractMapService) tanımlanmış metodu kullanabiliriz.
+    //Bu şekilde benzer işler için tekrar tekrar metot yazmaktan kurtuluruz.
+    //Bunun yanında
     @Override
     public Patient save(Patient object) {
         if(object!=null){
