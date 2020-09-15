@@ -1,18 +1,12 @@
 package org.denclinic.denclinic.bootstrap;
 
-import org.denclinic.denclinic.model.Dentist;
-import org.denclinic.denclinic.model.Patient;
-import org.denclinic.denclinic.model.Tooth;
-import org.denclinic.denclinic.model.ToothType;
+import org.denclinic.denclinic.model.*;
 import org.denclinic.denclinic.services.DentistService;
 import org.denclinic.denclinic.services.PatientService;
+import org.denclinic.denclinic.services.SpecialitiesService;
 import org.denclinic.denclinic.services.ToothTypeService;
-import org.denclinic.denclinic.services.map.AbstractMapService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import java.util.HashSet;
-import java.util.Set;
 
 //Becames spring bean
 //Bootstrap data implemented in this class
@@ -21,19 +15,21 @@ public class DataLoader implements CommandLineRunner {
     private final PatientService patientService;
     private final DentistService dentistService;
     private final ToothTypeService toothTypeService;
+    private final SpecialitiesService specialitiesService;
 
 
     //@Autowired constructor olduğu için @AutoWired annotation'u kullanmamıza gerek yok
-    public DataLoader(PatientService patientService, DentistService dentistService, ToothTypeService toothTypeService) {
+    public DataLoader(PatientService patientService, DentistService dentistService, ToothTypeService toothTypeService, SpecialitiesService specialitiesService) {
         //Burada interface kullanıyoruz. interface'in işaret ettiği impl yapısını bulması ve kullanması gerekiyor.
         this.patientService = patientService;
         this.dentistService = dentistService;
         this.toothTypeService=toothTypeService;
-
+        this.specialitiesService = specialitiesService;
     }
 
     @Override
     public void run(String... args) throws Exception {
+        //Diş tipleri ve detayları
         ToothType dis1=new ToothType();
         dis1.setDisAdi("SOLUST");
         dis1.setDisNumarasi(11);
@@ -46,9 +42,20 @@ public class DataLoader implements CommandLineRunner {
         dis3.setDisAdi("SOLUST");
         dis3.setDisNumarasi(13);
         toothTypeService.save(dis3);
+        //Hekimlerin uzmanlığı
+        Speciality dentist=new Speciality();
+        dentist.setDescription("Dentist");
+        Speciality savedDentist=specialitiesService.save(dentist);
+        Speciality dentSurgery=new Speciality();
+        dentSurgery.setDescription("Çene Cerrahı");
+        Speciality savedDentSurgery=specialitiesService.save(dentSurgery);
+        Speciality ortoDentist=new Speciality();
+        ortoDentist.setDescription("OrtoDentist");
+        Speciality savedortoDentist=specialitiesService.save(ortoDentist);
 
+
+        //Hastalar
         Patient hasta1=new Patient();
-
         hasta1.setFirstName("Seyda");
         hasta1.setLastName("Özdemir");
         hasta1.setAdress("Cumhuriyet Mah.");
@@ -81,17 +88,17 @@ public class DataLoader implements CommandLineRunner {
         patientService.save(hasta2);
         System.out.println("Loading patients...");
 
+        //Hekimler
         Dentist hekim1=new Dentist();
-
         hekim1.setFirstName("Çetin");
         hekim1.setLastName("Çalışkan");
+        hekim1.getSpeciality().add(dentist);
         dentistService.save(hekim1);
-
         Dentist hekim2=new Dentist();
-
         hekim2.setFirstName("Güray");
         hekim2.setLastName("Başeğmez");
-
+        hekim2.getSpeciality().add(dentist);
+        hekim2.getSpeciality().add(ortoDentist);
         dentistService.save(hekim2);
 
 
