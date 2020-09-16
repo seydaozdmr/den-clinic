@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@RequestMapping("/patients")
 @Controller
 public class PatientController {
     private final PatientService patientService;
@@ -13,9 +14,14 @@ public class PatientController {
         this.patientService = patientService;
     }
 
-    @RequestMapping("/patients")
+    @RequestMapping({"","/","/index","/list"})
     public String listPatients(Model model){
         model.addAttribute("patients",patientService.findAll());
         return "patient/list";
+    }
+
+    @RequestMapping("/find")
+    public String findPatients(){
+        return "notImplemented";
     }
 }
