@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 @Service
 public class ToothTypeMapService extends AbstractMapService<ToothType,Integer> implements ToothTypeService {
+    //ToothTypeService aşağıdaki metotları Crud service'den miras olarak alıyor.
     @Override
     public Set<ToothType> findAll() {
         return super.findAll();
