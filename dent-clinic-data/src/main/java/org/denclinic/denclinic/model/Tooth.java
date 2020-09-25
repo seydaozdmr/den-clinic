@@ -1,7 +1,17 @@
 package org.denclinic.denclinic.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="tooths")
 public class Tooth extends BaseEntity {
+
+    @ManyToOne
+    @JoinColumn(name="type_id")
     private ToothType toothType;
+
+    @ManyToOne
+    @JoinColumn(name="patient_id")
     private Patient patient;
 
 

@@ -1,12 +1,21 @@
 package org.denclinic.denclinic.model;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+//JPA persistence entity
+@Entity
+@Table(name="patients")
 public class Patient extends Person {
+    @Column(name="adress")
     private String adress;
+    @Column(name="city")
     private String city;
+    @Column(name="telephone")
     private String telephone;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "patient")
     private Set<Tooth> tooths = new HashSet<>();
 
     public String getAdress() {

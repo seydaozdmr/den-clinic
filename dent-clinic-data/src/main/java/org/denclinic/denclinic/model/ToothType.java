@@ -1,22 +1,30 @@
 package org.denclinic.denclinic.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="types")
 public class ToothType extends BaseEntity {
-    private String disAdi;
-    private int disNumarasi;
+    @Column(name="toothName")
+    private String toothName;
+    @Column(name="toothNumber")
+    private int toothNumber;
 
     public String getDisAdi() {
-        return disAdi;
+        return toothName;
     }
 
     public void setDisAdi(String disAdi) {
-        this.disAdi = disAdi;
+        this.toothName = disAdi;
     }
 
     public int getDisNumarasi() {
-        return disNumarasi;
+        return toothNumber;
     }
 
     public void setDisNumarasi(int disNumarasi) {
-        this.disNumarasi = disNumarasi;
+        this.toothNumber = disNumarasi;
     }
 }
