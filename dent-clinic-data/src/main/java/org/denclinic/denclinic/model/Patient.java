@@ -16,7 +16,7 @@ public class Patient extends Person {
     private String telephone;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "patient")
-    private Set<Tooth> tooths = new HashSet<>();
+    private Set<Tooths> tooths = new HashSet<>();   //Hastanın dişleri var OneToMany bir hastanın çok dişi var
 
     public String getAdress() {
         return adress;
@@ -42,11 +42,11 @@ public class Patient extends Person {
         this.telephone = telephone;
     }
 
-    public Set<Tooth> getTooths() {
+    public Set<Tooths> getTooths() {
         return tooths;
     }
 
-    public void setTooths(Set<Tooth> tooths) {
+    public void setTooths(Set<Tooths> tooths) {
         this.tooths = tooths;
     }
 }

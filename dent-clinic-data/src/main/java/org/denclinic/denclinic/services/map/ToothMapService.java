@@ -1,6 +1,6 @@
 package org.denclinic.denclinic.services.map;
 
-import org.denclinic.denclinic.model.Tooth;
+import org.denclinic.denclinic.model.Tooths;
 import org.denclinic.denclinic.services.ToothService;
 import org.springframework.stereotype.Service;
 
@@ -8,9 +8,9 @@ import java.util.Set;
 
 //Implementing spring config (annotation congif dependency injection and ioc)
 @Service
-public class ToothMapService extends AbstractMapService<Tooth,Integer> implements ToothService {
+public class ToothMapService extends AbstractMapService<Tooths,Integer> implements ToothService {
     @Override
-    public Set<Tooth> findAll() {
+    public Set<Tooths> findAll() {
         return super.findAll();
     }
 
@@ -20,17 +20,17 @@ public class ToothMapService extends AbstractMapService<Tooth,Integer> implement
     }
 
     @Override
-    public void delete(Tooth object) {
+    public void delete(Tooths object) {
         super.delete(object);
     }
 
     @Override
-    public Tooth save(Tooth object) {
+    public Tooths save(Tooths object) {
         return super.save(object);
     }
 
     @Override
-    public Tooth findById(Integer id) {
+    public Tooths findById(Integer id) {
         return super.findById(id);
     }
 }

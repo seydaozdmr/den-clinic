@@ -1,7 +1,7 @@
 package org.denclinic.denclinic.services.map;
 
 import org.denclinic.denclinic.model.Patient;
-import org.denclinic.denclinic.model.Tooth;
+import org.denclinic.denclinic.model.Tooths;
 import org.denclinic.denclinic.services.PatientService;
 import org.denclinic.denclinic.services.ToothService;
 import org.denclinic.denclinic.services.ToothTypeService;
@@ -14,7 +14,7 @@ import java.util.Set;
 public class PatientMapService extends AbstractMapService<Patient,Integer> implements PatientService {
     private final ToothTypeService toothTypeService;
     private final ToothService toothService;
-
+    //Dependency injection
     public PatientMapService(ToothTypeService toothTypeService, ToothService toothService) {
         this.toothTypeService = toothTypeService;
         this.toothService = toothService;
@@ -57,8 +57,8 @@ public class PatientMapService extends AbstractMapService<Patient,Integer> imple
                         throw new RuntimeException("Tooth type is requared");
                     }
                     if(tooth.getId()==null){
-                        Tooth savedTooth= toothService.save(tooth);
-                        tooth.setId(savedTooth.getId());
+                        Tooths savedTooths = toothService.save(tooth);
+                        tooth.setId(savedTooths.getId());
                     }
                 });
             }

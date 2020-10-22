@@ -61,14 +61,14 @@ public class DataLoader implements CommandLineRunner {
         hasta1.setAdress("Cumhuriyet Mah.");
         hasta1.setCity("Gazipaşa");
         hasta1.setTelephone("05437375533");
-        Tooth tooth1=new Tooth();
-        tooth1.setToothType(dis1);
-        tooth1.setPatient(hasta1);
-        Tooth tooth2=new Tooth();
-        tooth2.setToothType(dis2);
-        tooth2.setPatient(hasta1);
-        hasta1.getTooths().add(tooth1);
-        hasta1.getTooths().add(tooth2);
+        Tooths tooths1 =new Tooths();
+        tooths1.setToothType(dis1);
+        tooths1.setPatient(hasta1);
+        Tooths tooths2 =new Tooths();
+        tooths2.setToothType(dis2);
+        tooths2.setPatient(hasta1);
+        hasta1.getTooths().add(tooths1);
+        hasta1.getTooths().add(tooths2);
         patientService.save(hasta1);
 
         Patient hasta2=new Patient();
@@ -77,14 +77,14 @@ public class DataLoader implements CommandLineRunner {
         hasta2.setAdress("Yeni Mah. Yahya Kemal Cad.");
         hasta2.setCity("Bucak");
         hasta2.setTelephone("05541213088");
-        Tooth tooth3=new Tooth();
-        tooth3.setToothType(dis1);
-        tooth3.setPatient(hasta2);
-        Tooth tooth4=new Tooth();
-        tooth4.setToothType(dis2);
-        tooth4.setPatient(hasta2);
-        hasta2.getTooths().add(tooth3);
-        hasta2.getTooths().add(tooth4);
+        Tooths tooths3 =new Tooths();
+        tooths3.setToothType(dis1);
+        tooths3.setPatient(hasta2);
+        Tooths tooths4 =new Tooths();
+        tooths4.setToothType(dis2);
+        tooths4.setPatient(hasta2);
+        hasta2.getTooths().add(tooths3);
+        hasta2.getTooths().add(tooths4);
         patientService.save(hasta2);
         System.out.println("Loading patients...");
 

@@ -12,6 +12,7 @@ public class ToothType extends BaseEntity {
     @Column(name="toothNumber")
     private int toothNumber;
 
+
     public String getDisAdi() {
         return toothName;
     }

@@ -1,10 +1,9 @@
 package org.denclinic.denclinic.services;
 
-import org.denclinic.denclinic.model.Tooth;
+import org.denclinic.denclinic.model.Tooths;
 
-import java.util.Set;
 
-public interface ToothService extends CrudService<Tooth,Integer> {
+public interface ToothService extends CrudService<Tooths,Integer> {
 
 
 }
