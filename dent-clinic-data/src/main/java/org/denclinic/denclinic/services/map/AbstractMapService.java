@@ -8,16 +8,17 @@ public abstract class AbstractMapService<T extends BaseEntity,ID extends Integer
     //Bütün data buraya yüklenecek
     protected Map<Integer,T> map=new HashMap<>();
 
+    //Yüklenen data'nın tipine göre bütün değerleri alan metot
     Set<T> findAll(){
         return new HashSet<>(map.values());
     }
-
+    //T tipinde ID'ye göre değerleri getiren metot
     T findById(ID id){
         return map.get(id);
     }
 
     //Save metodu ile gönderilen veriler map'a put edilecek...
-    T save(T object){
+    T save(T object){  //T tipinde gelen bütün verileri yukardaki map'e ekleyen metot
         if(object!=null) {
             if (object.getId() == null) {
                 object.setId(getNextID());

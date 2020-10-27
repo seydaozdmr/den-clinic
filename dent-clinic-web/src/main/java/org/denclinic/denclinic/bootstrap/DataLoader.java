@@ -29,6 +29,14 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        int count=toothTypeService.findAll().size();
+        if(count==0){
+            loadData();
+        }
+
+    }
+
+    private void loadData() {
         //Diş tipleri ve detayları
         ToothType dis1=new ToothType();
         dis1.setDisAdi("SOLUST");
@@ -42,13 +50,16 @@ public class DataLoader implements CommandLineRunner {
         dis3.setDisAdi("SOLUST");
         dis3.setDisNumarasi(13);
         toothTypeService.save(dis3);
+
         //Hekimlerin uzmanlığı
         Speciality dentist=new Speciality();
         dentist.setDescription("Dentist");
         Speciality savedDentist=specialitiesService.save(dentist);
+
         Speciality dentSurgery=new Speciality();
         dentSurgery.setDescription("Çene Cerrahı");
         Speciality savedDentSurgery=specialitiesService.save(dentSurgery);
+
         Speciality ortoDentist=new Speciality();
         ortoDentist.setDescription("OrtoDentist");
         Speciality savedortoDentist=specialitiesService.save(ortoDentist);
@@ -93,7 +104,9 @@ public class DataLoader implements CommandLineRunner {
         hekim1.setFirstName("Çetin");
         hekim1.setLastName("Çalışkan");
         hekim1.getSpeciality().add(dentist);
+        System.out.println(hekim1);
         dentistService.save(hekim1);
+
         Dentist hekim2=new Dentist();
         hekim2.setFirstName("Güray");
         hekim2.setLastName("Başeğmez");

@@ -8,11 +8,11 @@ import java.util.Set;
 @Table(name="tooths")
 public class Tooths extends BaseEntity {
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name="type_id")
     private ToothType toothType;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name="patient_id")
     private Patient patient;
     //ManyToOne bir çok diş bir tane hastaya ait.
