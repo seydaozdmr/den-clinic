@@ -3,10 +3,12 @@ package org.denclinic.denclinic.services.map;
 
 import org.denclinic.denclinic.model.ToothType;
 import org.denclinic.denclinic.services.ToothTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 @Service
+@Profile({"default","map"})
 public class ToothTypeMapService extends AbstractMapService<ToothType,Integer> implements ToothTypeService {
     //ToothTypeService aşağıdaki metotları Crud service'den miras olarak alıyor.
     @Override
