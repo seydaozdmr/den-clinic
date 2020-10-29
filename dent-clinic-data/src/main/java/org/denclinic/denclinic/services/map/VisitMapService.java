@@ -2,11 +2,13 @@ package org.denclinic.denclinic.services.map;
 
 import org.denclinic.denclinic.model.Visit;
 import org.denclinic.denclinic.services.VisitService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default","map"})
 public class VisitMapService extends AbstractMapService<Visit,Integer> implements VisitService {
     @Override
     public Set<Visit> findAll() {
