@@ -5,12 +5,14 @@ import org.denclinic.denclinic.model.Tooths;
 import org.denclinic.denclinic.services.PatientService;
 import org.denclinic.denclinic.services.ToothService;
 import org.denclinic.denclinic.services.ToothTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 //Implementing spring config (annotation congif dependency injection and ioc)
 @Service
+@Profile("patientmapservice")
 public class PatientMapService extends AbstractMapService<Patient,Integer> implements PatientService {
     private final ToothTypeService toothTypeService;
     private final ToothService toothService;
