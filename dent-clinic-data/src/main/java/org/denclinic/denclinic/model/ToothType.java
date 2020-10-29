@@ -7,8 +7,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name="types")
 public class ToothType extends BaseEntity {
+
     @Column(name="toothName")
     private String toothName;
+
     @Column(name="toothNumber")
     private int toothNumber;
 

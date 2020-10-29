@@ -18,7 +18,8 @@ public class Visit extends BaseEntity {
     @ManyToOne
     @JoinColumn(name="tooths_id")
     private Tooths tooths;
-    //dişleri set olarak bir bütün olarak ziyaret ettiğini düşündüm
+    //dişlerin tektek ziyaret ettiğini düşündüm
+    //çünkü gelen bir hasta en fazla bir kaç dişine işlem yaptırabilir.
 
     public LocalDate getDate() {
         return date;
