@@ -1,12 +1,11 @@
 package org.denclinic.denclinic.bootstrap;
 
 import org.denclinic.denclinic.model.*;
-import org.denclinic.denclinic.services.DentistService;
-import org.denclinic.denclinic.services.PatientService;
-import org.denclinic.denclinic.services.SpecialitiesService;
-import org.denclinic.denclinic.services.ToothTypeService;
+import org.denclinic.denclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 //Becames spring bean
 //Bootstrap data implemented in this class
@@ -16,15 +15,17 @@ public class DataLoader implements CommandLineRunner {
     private final DentistService dentistService;
     private final ToothTypeService toothTypeService;
     private final SpecialitiesService specialitiesService;
+    private final VisitService visitService;
 
 
     //@Autowired constructor olduğu için @AutoWired annotation'u kullanmamıza gerek yok
-    public DataLoader(PatientService patientService, DentistService dentistService, ToothTypeService toothTypeService, SpecialitiesService specialitiesService) {
+    public DataLoader(PatientService patientService, DentistService dentistService, ToothTypeService toothTypeService, SpecialitiesService specialitiesService, VisitService visitService) {
         //Burada interface kullanıyoruz. interface'in işaret ettiği impl yapısını bulması ve kullanması gerekiyor.
         this.patientService = patientService;
         this.dentistService = dentistService;
         this.toothTypeService=toothTypeService;
         this.specialitiesService = specialitiesService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -98,6 +99,14 @@ public class DataLoader implements CommandLineRunner {
         hasta2.getTooths().add(tooths4);
         patientService.save(hasta2);
         System.out.println("Loading patients...");
+
+        Visit muayene =new Visit();
+        muayene.setTooths(tooths1);
+        muayene.setDate(LocalDate.now());
+        muayene.setDescription("Kanal Tedavisi");
+
+        visitService.save(muayene);
+
 
         //Hekimler
         Dentist hekim1=new Dentist();
