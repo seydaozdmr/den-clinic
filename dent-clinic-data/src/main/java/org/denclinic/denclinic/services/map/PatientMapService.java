@@ -12,6 +12,7 @@ import java.util.Set;
 
 //Implementing spring config (annotation congif dependency injection and ioc)
 @Service
+@Profile({"default","map"})
 public class PatientMapService extends AbstractMapService<Patient,Integer> implements PatientService {
     private final ToothTypeService toothTypeService;
     private final ToothService toothService;
