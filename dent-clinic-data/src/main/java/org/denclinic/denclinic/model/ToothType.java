@@ -1,9 +1,16 @@
 package org.denclinic.denclinic.model;
 
+import lombok.*;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name="types")
 public class ToothType extends BaseEntity {
@@ -14,20 +21,21 @@ public class ToothType extends BaseEntity {
     @Column(name="toothNumber")
     private int toothNumber;
 
-
-    public String getDisAdi() {
+    public String getToothName() {
         return toothName;
     }
 
-    public void setDisAdi(String disAdi) {
-        this.toothName = disAdi;
+    public void setToothName(String toothName) {
+        this.toothName = toothName;
     }
 
-    public int getDisNumarasi() {
+    public int getToothNumber() {
         return toothNumber;
     }
 
-    public void setDisNumarasi(int disNumarasi) {
-        this.toothNumber = disNumarasi;
+    public void setToothNumber(int toothNumber) {
+        this.toothNumber = toothNumber;
     }
+
+
 }

@@ -22,7 +22,7 @@ public class VisitMapService extends AbstractMapService<Visit,Integer> implement
 
     @Override
     public Visit save(Visit visit) {
-        if(visit.getTooth() == null || visit.getTooth().getPatient()==null || visit.getTooth().getId()==null || visit.getTooth().getPatient().getId()==null) {
+        if(visit.getTooths() == null || visit.getTooths().getPatient()==null || visit.getTooths().getId()==null || visit.getTooths().getPatient().getId()==null) {
             throw new RuntimeException("Geçersiz muayene");
         }
         return super.save(visit);

@@ -1,10 +1,16 @@
 package org.denclinic.denclinic.model;
 
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name="visit")
 public class Visit extends BaseEntity {
@@ -21,27 +27,6 @@ public class Visit extends BaseEntity {
     //dişlerin tektek ziyaret ettiğini düşündüm
     //çünkü gelen bir hasta en fazla bir kaç dişine işlem yaptırabilir.
 
-    public LocalDate getDate() {
-        return date;
-    }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Tooths getTooth() {
-        return tooths;
-    }
-
-    public void setTooths(Tooths tooths) {
-        this.tooths = tooths;
-    }
 }

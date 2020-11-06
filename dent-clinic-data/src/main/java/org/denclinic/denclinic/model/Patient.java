@@ -1,10 +1,16 @@
 package org.denclinic.denclinic.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-//JPA persistence entity
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name="patients")
 public class Patient extends Person {
@@ -18,35 +24,6 @@ public class Patient extends Person {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "patient")
     private Set<Tooths> tooths = new HashSet<>();   //Hastanın dişleri var OneToMany bir hastanın çok dişi var
 
-    public String getAdress() {
-        return adress;
-    }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public Set<Tooths> getTooths() {
-        return tooths;
-    }
-
-    public void setTooths(Set<Tooths> tooths) {
-        this.tooths = tooths;
-    }
 }
+//JPA persistence entity

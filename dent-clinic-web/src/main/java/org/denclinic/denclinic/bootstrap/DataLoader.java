@@ -40,16 +40,16 @@ public class DataLoader implements CommandLineRunner {
     private void loadData() {
         //Diş tipleri ve detayları
         ToothType dis1=new ToothType();
-        dis1.setDisAdi("SOLUST");
-        dis1.setDisNumarasi(11);
+        dis1.setToothName("SOLUST");
+        dis1.setToothNumber(11);
         toothTypeService.save(dis1);
         ToothType dis2=new ToothType();
-        dis2.setDisAdi("SOLUST");
-        dis2.setDisNumarasi(12);
+        dis2.setToothName("SOLUST");
+        dis2.setToothNumber(12);
         toothTypeService.save(dis2);
         ToothType dis3=new ToothType();
-        dis3.setDisAdi("SOLUST");
-        dis3.setDisNumarasi(13);
+        dis3.setToothName("SOLUST");
+        dis3.setToothNumber(13);
         toothTypeService.save(dis3);
 
         //Hekimlerin uzmanlığı
