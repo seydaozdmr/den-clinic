@@ -79,6 +79,8 @@ public class PatientMapService extends AbstractMapService<Patient,Integer> imple
 
     @Override
     public Patient findByLastName(String lastName) {
-        return null;
+        return this.findAll().stream().filter(patient -> patient.getLastName().equalsIgnoreCase(lastName))
+                .findFirst()
+                .orElse(null);
     }
 }

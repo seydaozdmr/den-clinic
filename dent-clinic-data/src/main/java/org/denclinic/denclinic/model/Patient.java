@@ -9,11 +9,21 @@ import java.util.Set;
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
 @Table(name="patients")
 public class Patient extends Person {
+
+    @Builder
+    public Patient(Integer id,String firstName,String lastName,String adress, String city,String telephone,Set<Tooths> tooths){
+        super(id,firstName,lastName);
+        this.adress=adress;
+        this.city=city;
+        this.telephone=telephone;
+        if(tooths!=null){
+            this.tooths=tooths;
+        }
+    }
+
     @Column(name="adress")
     private String adress;
     @Column(name="city")
