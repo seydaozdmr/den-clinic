@@ -11,6 +11,7 @@
         <module>dent-clinic-data</module>
 		<module>dent-clinic-web</module>
 	</modules>
+
 	<packaging>pom</packaging>
 	<name>den-clinic</name>
 	<description>Dentist Clinic Project</description>
