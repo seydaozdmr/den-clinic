@@ -44,17 +44,17 @@
                       </a>
                   </li>
   
-                  <li th:replace="::menuItem ('/','home','home page','home','Home')">
+                  <li th:replace="::menuItem ('/','home','anasayfa','home','Anasayfa')">
                       <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                      <span>Ana Sayfa</span>
+                      <span>Anasayfa</span>
                   </li>
   
-                  <li th:replace="::menuItem ('patients','/patients/find','find patients','search','Find patients')">
+                  <li th:replace="::menuItem ('patients/find','','hastalar','search','Hastalar')">
                       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                       <span>Hastalar</span>
                   </li>
   
-                  <li th:replace="::menuItem ('dentists','/list.html','dentists','dent-list','Dentists')">
+                  <li th:replace="::menuItem ('dentists','/list.html','hekimler','dent-list','Hekimler')">
                       <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                       <span>Hekimler</span>
                   </li>
@@ -70,9 +70,9 @@
   </nav>
   <div class="container-fluid">
       <div class="container xd-container">
-            <h2> Test Block</h2>
+           <!-- <h2> Altta body kısmının implement edilmesi</h2>-->
           <th:block th:include="${template}"/>
-            <h2> End of test block</h2>
+           <!-- <h2> End of test block</h2> -->
         <br/>
         <br/>
         <div class="container">

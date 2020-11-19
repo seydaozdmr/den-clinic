@@ -83,9 +83,11 @@ public class DataLoader implements CommandLineRunner {
         hasta1.getTooths().add(tooths2);
         patientService.save(hasta1);
 
+
+
         Patient hasta2=new Patient();
-        hasta2.setFirstName("Hatice");
-        hasta2.setLastName("Norcu Özdemir");
+        hasta2.setFirstName("Hatice Norcu");
+        hasta2.setLastName("Özdemir");
         hasta2.setAdress("Yeni Mah. Yahya Kemal Cad.");
         hasta2.setCity("Bucak");
         hasta2.setTelephone("05541213088");
@@ -105,6 +107,12 @@ public class DataLoader implements CommandLineRunner {
         muayene.setDate(LocalDate.now());
         muayene.setDescription("Kanal Tedavisi");
 
+        Visit tedavi =new Visit();
+        tedavi.setTooths(tooths2);
+        LocalDate date=LocalDate.of(2012,12,2);
+        tedavi.setDate(date);
+        tedavi.setDescription("Kaplama");
+        visitService.save(tedavi);
         visitService.save(muayene);
 
 
