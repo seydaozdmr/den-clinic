@@ -22,4 +22,8 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //AUTO-GENERATED ID NUMBER PRIMARY KEY
     private Integer id;
     //Getter and setter hide by lombok
+
+    public boolean isNew(){
+        return this.id==null;
+    }
 }

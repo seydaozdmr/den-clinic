@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'patients')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Patients</title>
+</head>
+<body>
+
+<h2>Yeni Hasta</h2>
+<form th:object="${patient}" class="form-horizontal" id="add-owner-form" method="post">
+    <div class="form-group has-feedback">
+        <input
+                th:replace="~{fragments/inputField :: input ('First Name', 'firstName', 'text')}" />
+        <input
+                th:replace="~{fragments/inputField :: input ('Last Name', 'lastName', 'text')}" />
+        <input
+                th:replace="~{fragments/inputField :: input ('Address', 'adress', 'text')}" />
+        <input
+                th:replace="~{fragments/inputField :: input ('City', 'city', 'text')}" />
+        <input
+                th:replace="~{fragments/inputField :: input ('Telephone', 'telephone', 'text')}" />
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button
+                    th:with="text=${patient['new']} ? 'Yeni Kayıt' : 'Güncelle'"
+                    class="btn btn-default" type="submit" th:text="${text}">Ekle</button>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

@@ -24,9 +24,9 @@
     </tr>
 </table>
 
-<a th:href="@{{id}/edit(id=${patient.id})}" class="btn btn-default">Edit
+<a th:href="@{{id}/update(id=${patient.id})}" class="btn btn-default">Edit
     Patient</a>
-<a th:href="@{{id}/pets/new(id=${patient.id})}" class="btn btn-default">Yeni
+<a th:href="@{{id}/tooths/new(id=${patient.id})}" class="btn btn-default">Yeni
     Tedavi</a>
 
 <br />
@@ -60,7 +60,7 @@
                 </tr>
                 <tr>
                     <td><a
-                            th:href="@{{patientid}/tooths/{toothid}/edit(patientid=${patient.id},toothid=${tooth.id})}">Edit
+                            th:href="@{{patientid}/tooths/{toothid}/update(patientid=${patient.id},toothid=${tooth.id})}">Edit
                         Tooth</a></td>
                     <td><a
                             th:href="@{{patientid}/tooths/{toothid}/visits/new(patientid=${patient.id},toothid=${tooth.id})}">Tedavi

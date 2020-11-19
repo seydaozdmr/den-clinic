@@ -6,17 +6,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.stream.StreamSupport;
+
+import javax.validation.Valid;
 
 @RequestMapping("/patients")
 @Controller
 public class PatientController {
+    //static file createOrUpdatePatient
+    private static final String CREATE_OR_UPDATE_PATIENT_FORM="patient/createOrUpdatePatientForm";
     private final PatientService patientService;
 
     public PatientController(PatientService patientService) {
@@ -33,8 +35,8 @@ public class PatientController {
 //        model.addAttribute("patients",patientService.findAll());
 //        return "patient/list";
 //    }
-
-    @RequestMapping("/find")
+    //
+    @GetMapping("/find")
     public String findPatients(Model model){
         model.addAttribute("patient", Patient.builder().build());
         return "patient/findPatients";
@@ -48,7 +50,7 @@ public class PatientController {
             patient.setLastName("");
         }
 
-        List<Patient> results= patientService.findAllByLastNameLike(patient.getLastName());
+        List<Patient> results= patientService.findAllByLastNameLike('%'+patient.getLastName()+'%');
 
         if(results.isEmpty()){
             result.rejectValue("lastName","notFound","not Found");
@@ -68,5 +70,49 @@ public class PatientController {
         modelAndView.addObject(patientService.findById(Integer.valueOf(patientid)));
         return modelAndView;
     }
+
+    //NEW PATIENT
+    @GetMapping("/new")
+    public String initCreateForm(Model model){
+        Patient patient=Patient.builder().build();
+        model.addAttribute("patient",patient);
+        return CREATE_OR_UPDATE_PATIENT_FORM;
+    }
+
+    @PostMapping("/new")
+    public String processCreatingForm(@Valid Patient patient,BindingResult result){
+        if(result.hasErrors()){
+            return CREATE_OR_UPDATE_PATIENT_FORM;
+        }else{
+            Patient savedPatient=patientService.save(patient);
+            return "redirect:/patients/"+savedPatient.getId();
+        }
+    }
+
+    //UPDATE PATIENT
+    @GetMapping("/{patientid}/update")
+    public String initUpdatePatientForm(@PathVariable String patientid, Model model){
+        Patient patient=patientService.findById(Integer.valueOf(patientid));
+        model.addAttribute("patient",patient);
+        return CREATE_OR_UPDATE_PATIENT_FORM;
+    }
+
+    @PostMapping("/{patientid}/update")
+    public String processUpdatePatientForm(@Valid Patient patient, BindingResult result, @PathVariable Integer patientid){
+        if(result.hasErrors()){
+            return CREATE_OR_UPDATE_PATIENT_FORM;
+        }else{
+            System.out.println(patientid);
+            patient.setId(patientid);
+            Patient savedPatient=patientService.save(patient);
+            return "redirect:/patients/"+savedPatient.getId();
+        }
+    }
+
+
+
+
+
+
 
 }
