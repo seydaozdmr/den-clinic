@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -29,6 +30,13 @@ public class PatientSDJpaService  implements PatientService {
     @Override
     public Patient findByLastName(String lastName) {
         return patientRepositories.findByLastName(lastName);
+    }
+
+    @Override
+    public List<Patient> findAllByLastNameLike(String lastName) {
+
+
+        return patientRepositories.findAllByLastNameLike(lastName);
     }
 
     @Override

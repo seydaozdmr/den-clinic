@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'patients')}">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Patients</title>
+</head>
+<body>
+
+<h1 th:text="'List of Patients'">Hastaların Listesi</h1>
+
+<table id="patients" class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 150px;">İsim Soyisim</th>
+            <th style="width: 150px;">Adress</th>
+            <th style="width: 150px;">Şehir</th>
+            <th style="width: 150px;">Telefon</th>
+            <th style="width: 150px;">Dişler</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="patient : ${selections}">
+            <td><a th:href="@{/patients/__${patient.id}__}" th:text="${patient.firstName+' '+patient.lastName}"/></td>
+            <td th:text="${patient.adress}">1</td>
+            <td th:text="${patient.city}">Joe</td>
+            <td th:text="${patient.telephone}">Buck</td>
+            <td><span th:each="tooth : ${patient.tooths}" th:text="${tooth.toothType.toothName+' - '+tooth.toothType.toothNumber}" /></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -8,6 +8,7 @@ import org.denclinic.denclinic.services.ToothTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 //Implementing spring config (annotation congif dependency injection and ioc)
@@ -82,5 +83,12 @@ public class PatientMapService extends AbstractMapService<Patient,Integer> imple
         return this.findAll().stream().filter(patient -> patient.getLastName().equalsIgnoreCase(lastName))
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public List<Patient> findAllByLastNameLike(String lastName) {
+
+        //todo - impl
+        return null;
     }
 }

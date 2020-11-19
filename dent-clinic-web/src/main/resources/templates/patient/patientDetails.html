@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'patients')}">
+<body>
+<h2>Hasta Bilgileri</h2>
+
+
+<table class="table table-striped" th:object="${patient}">
+    <tr>
+        <th>Name</th>
+        <td><b th:text="*{firstName + ' ' + lastName}"></b></td>
+    </tr>
+    <tr>
+        <th>Address</th>
+        <td th:text="*{adress}" /></td>
+    </tr>
+    <tr>
+        <th>City</th>
+        <td th:text="*{city}" /></td>
+    </tr>
+    <tr>
+        <th>Telephone</th>
+        <td th:text="*{telephone}" /></td>
+    </tr>
+</table>
+
+<a th:href="@{{id}/edit(id=${patient.id})}" class="btn btn-default">Edit
+    Patient</a>
+<a th:href="@{{id}/pets/new(id=${patient.id})}" class="btn btn-default">Yeni
+    Tedavi</a>
+
+<br />
+<br />
+<br />
+<h2>Diş işlemleri</h2>
+
+<table class="table table-striped">
+
+    <tr th:each="tooth : ${patient.tooths}">
+        <td valign="top">
+            <dl class="dl-horizontal">
+                <dt>Diş Bölgesi</dt>
+                <dd th:text="${tooth.toothType.toothName}" /></dd>
+
+                <dt>Diş Numarası</dt>
+                <dd th:text="${tooth.toothType.toothNumber}" /></dd>
+            </dl>
+        </td>
+        <td valign="top">
+            <table class="table-condensed">
+                <thead>
+                <tr>
+                    <th>Tedavi Tarihi</th>
+                    <th>Detaylı Bilgi</th>
+                </tr>
+                </thead>
+                <tr th:each="visit : ${tooth.visits}">
+                    <td th:text="${#temporals.format(visit.date, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${visit?.description}"></td>
+                </tr>
+                <tr>
+                    <td><a
+                            th:href="@{{patientid}/tooths/{toothid}/edit(patientid=${patient.id},toothid=${tooth.id})}">Edit
+                        Tooth</a></td>
+                    <td><a
+                            th:href="@{{patientid}/tooths/{toothid}/visits/new(patientid=${patient.id},toothid=${tooth.id})}">Tedavi
+                        Ekle</a></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+</table>
+
+
+
+</body>
+</html>
