@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'patients')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Tooth</title>
+</head>
+<body>
+
+<h2>
+    <th:block th:if="${visit['new']}">Yeni </th:block>
+    Tedavi
+</h2>
+
+<b>Diş</b>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Diş Bölgesi</th>
+        <th>Diş Numarası</th>
+        <th>Hasta</th>
+    </tr>
+    </thead>
+    <tr>
+        <td th:text="${tooth.toothType.toothName}" /></td>
+        <td th:text="${tooth.toothType.toothNumber}" /></td>
+        <td th:text="${tooth.patient?.firstName + ' ' + tooth.patient?.lastName}" /></td>
+    </tr>
+</table>
+
+<form th:object="${visit}" class="form-horizontal" method="post">
+    <div class="form-group has-feedback">
+        <input
+                th:replace="~{fragments/inputField :: input ('Tarih', 'date', 'date')}"  />
+        <input
+                th:replace="~{fragments/inputField :: input ('İşlem', 'description', 'text')}" />
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input type="hidden" name="toothid" th:value="${tooth.id}" />
+            <button class="btn btn-default" type="submit">Tedavi Ekle</button>
+        </div>
+    </div>
+</form>
+
+<br />
+<b>Daha Önceki Tedaviler</b>
+<table class="table table-striped">
+    <tr>
+        <th>Tarih</th>
+        <th>İşlem</th>
+    </tr>
+    <tr th:if="${!visit['new']}" th:each="visit : ${tooth.visits}">
+        <td th:text="${#temporals.format(visit.date, 'yyyy-MM-dd')}" /></td>
+        <td th:text=" ${visit.description}" /></td>
+    </tr>
+</table>
+
+
+
+</body>
+</html>

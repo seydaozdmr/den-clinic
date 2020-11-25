@@ -18,7 +18,11 @@ public class Tooths extends BaseEntity {
         super(id);
         this.toothType=toothType;
         this.patient=patient;
-        this.visits=visits;
+
+        if(visits ==null || visits.size()>0){
+            this.visits=visits;
+        }
+
     }
 
     @ManyToOne
