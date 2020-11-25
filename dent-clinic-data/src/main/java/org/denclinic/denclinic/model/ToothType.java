@@ -10,7 +10,6 @@ import javax.persistence.Table;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name="types")
 public class ToothType extends BaseEntity {
@@ -21,21 +20,18 @@ public class ToothType extends BaseEntity {
     @Column(name="toothNumber")
     private int toothNumber;
 
-    public String getToothName() {
-        return toothName;
+    @Builder
+    public ToothType(Integer id,String toothName,int toothNumber){
+        super(id);
+        this.toothName=toothName;
+        this.toothNumber=toothNumber;
     }
 
-    public void setToothName(String toothName) {
-        this.toothName = toothName;
+    @Override
+    public String toString() {
+        return "ToothType{" +
+                "toothName='" + toothName + '\'' +
+                ", toothNumber=" + toothNumber +
+                '}';
     }
-
-    public int getToothNumber() {
-        return toothNumber;
-    }
-
-    public void setToothNumber(int toothNumber) {
-        this.toothNumber = toothNumber;
-    }
-
-
 }

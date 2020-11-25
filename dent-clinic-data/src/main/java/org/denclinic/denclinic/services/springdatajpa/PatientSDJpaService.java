@@ -1,7 +1,7 @@
 package org.denclinic.denclinic.services.springdatajpa;
 
 import org.denclinic.denclinic.model.Patient;
-import org.denclinic.denclinic.repositories.PatientRepositories;
+import org.denclinic.denclinic.repositories.PatientRepository;
 import org.denclinic.denclinic.repositories.ToothRepository;
 import org.denclinic.denclinic.repositories.ToothTypeRepository;
 import org.denclinic.denclinic.services.PatientService;
@@ -16,39 +16,39 @@ import java.util.Set;
 @Service
 @Profile("springdatajpa")
 public class PatientSDJpaService  implements PatientService {
-    private final PatientRepositories patientRepositories;
+    private final PatientRepository patientRepository;
     private final ToothRepository toothRepository;
     private final ToothTypeRepository toothTypeRepository;
 
-    public PatientSDJpaService(PatientRepositories patientRepositories, ToothRepository toothRepository,
+    public PatientSDJpaService(PatientRepository patientRepository, ToothRepository toothRepository,
                                ToothTypeRepository toothTypeRepository) {
-        this.patientRepositories = patientRepositories;
+        this.patientRepository = patientRepository;
         this.toothRepository = toothRepository;
         this.toothTypeRepository = toothTypeRepository;
     }
 
     @Override
     public Patient findByLastName(String lastName) {
-        return patientRepositories.findByLastName(lastName);
+        return patientRepository.findByLastName(lastName);
     }
 
     @Override
     public List<Patient> findAllByLastNameLike(String lastName) {
 
 
-        return patientRepositories.findAllByLastNameLike(lastName);
+        return patientRepository.findAllByLastNameLike(lastName);
     }
 
     @Override
     public Set<Patient> findAll() {
         Set<Patient> patients = new HashSet<>();
-        patientRepositories.findAll().forEach(patients::add);
+        patientRepository.findAll().forEach(patients::add);
         return patients ;
     }
 
     @Override
     public Patient findById(Integer integer) {
-        Optional<Patient> optionalPatient=patientRepositories.findById(integer);
+        Optional<Patient> optionalPatient= patientRepository.findById(integer);
         if(optionalPatient.isPresent()){
             return optionalPatient.get();
         }else {
@@ -60,16 +60,16 @@ public class PatientSDJpaService  implements PatientService {
 
     @Override
     public Patient save(Patient object) {
-        return patientRepositories.save(object);
+        return patientRepository.save(object);
     }
 
     @Override
     public void delete(Patient object) {
-        patientRepositories.delete(object);
+        patientRepository.delete(object);
     }
 
     @Override
     public void deleteById(Integer integer) {
-        patientRepositories.deleteById(integer);
+        patientRepository.deleteById(integer);
     }
 }

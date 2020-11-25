@@ -38,27 +38,35 @@ public class PatientController {
     //
     @GetMapping("/find")
     public String findPatients(Model model){
+        //find sayfasına bir patient nesnesi gönderiyoruz.
         model.addAttribute("patient", Patient.builder().build());
         return "patient/findPatients";
     }
 
     //Hastalar sayfasının bu metot yardımıyle açılmasını istiyorum
-    @GetMapping()
+    //find sayfasındaki arama form'u action olarak patients döndürüyor. Oradan aşağıdaki processFindForm'a dönüyoruz.
+    //patient olarak gelen nesnenin yalnızca lastName property'si dolu olarak geliyor.
+    @GetMapping
     public String processFindForm(Patient patient, BindingResult result,Model model){
         // eğer parametresiz GET request gerçekleşirse tüm kayıtları geri dön
         if(patient.getLastName()==null){
             patient.setLastName("");
         }
-
+        //eğer formu boş olarak ara tuşuna basarsak yukarıda lastName özelliğine "" boşluk karakteri atanıyor.
+        //altta patientService yardımıyla arama gerçekleştiriyoruz.
+        //eğer form boşsa bütün hastaları liste olarak geri döndürüyor.
         List<Patient> results= patientService.findAllByLastNameLike('%'+patient.getLastName()+'%');
-
+        //eğer form doldurulup aranan hasta bulunamışsa
         if(results.isEmpty()){
             result.rejectValue("lastName","notFound","not Found");
+            //hasta arama sayfasına hata koduyla beraber geri dönüyoruz
             return "patient/findPatients";
         }else if(results.size()==1){
+            //eğer bir kişi bulmuşsak o kişinin sayfasına yönlendiriliyoruz.
             patient=results.iterator().next();
             return "redirect:/patients/"+patient.getId();
         }else {
+            //eğer birden çok kişi bulmuşsak patient/patientsList sayfasına hasta listesini gönderiyoruz.
             model.addAttribute("selections", results);
             return "patient/patientsList";
         }
@@ -66,8 +74,9 @@ public class PatientController {
 
     @GetMapping("/{patientid}")
     public ModelAndView showPatient(@PathVariable String patientid){
+        //ModelAndView ile view sayfasını modelAndView nesnesine ekliyoruz.
         ModelAndView modelAndView=new ModelAndView("patient/patientDetails");
-        modelAndView.addObject(patientService.findById(Integer.valueOf(patientid)));
+        modelAndView.addObject("patient",patientService.findById(Integer.valueOf(patientid)));
         return modelAndView;
     }
 
@@ -102,7 +111,6 @@ public class PatientController {
         if(result.hasErrors()){
             return CREATE_OR_UPDATE_PATIENT_FORM;
         }else{
-            System.out.println(patientid);
             patient.setId(patientid);
             Patient savedPatient=patientService.save(patient);
             return "redirect:/patients/"+savedPatient.getId();

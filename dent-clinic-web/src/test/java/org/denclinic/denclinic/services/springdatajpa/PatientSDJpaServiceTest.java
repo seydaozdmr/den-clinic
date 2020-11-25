@@ -1,7 +1,7 @@
 package org.denclinic.denclinic.services.springdatajpa;
 
 import org.denclinic.denclinic.model.Patient;
-import org.denclinic.denclinic.repositories.PatientRepositories;
+import org.denclinic.denclinic.repositories.PatientRepository;
 import org.denclinic.denclinic.repositories.ToothRepository;
 import org.denclinic.denclinic.repositories.ToothTypeRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +22,7 @@ import static org.mockito.Mockito.*;
 class PatientSDJpaServiceTest {
 
     @Mock
-    PatientRepositories patientRepositories;
+    PatientRepository patientRepository;
     @Mock
     ToothRepository toothRepository;
     @Mock
@@ -42,7 +42,7 @@ class PatientSDJpaServiceTest {
     void findByLastName() {
         Patient returnPatient=Patient.builder().id(1).lastName("Ozdemir").build();
 
-        when(patientRepositories.findByLastName(any())).thenReturn(returnPatient);
+        when(patientRepository.findByLastName(any())).thenReturn(returnPatient);
 
         Patient aranan=patientSDJpaService.findByLastName("Ozdemir");
 
@@ -55,7 +55,7 @@ class PatientSDJpaServiceTest {
         patientSet.add(Patient.builder().id(1).build());
         patientSet.add(Patient.builder().id(2).build());
 
-        when(patientRepositories.findAll()).thenReturn(patientSet);
+        when(patientRepository.findAll()).thenReturn(patientSet);
 
         Set<Patient> patients=patientSDJpaService.findAll();
 
@@ -64,14 +64,14 @@ class PatientSDJpaServiceTest {
 
     @Test
     void findById() {
-        when(patientRepositories.findById(anyInt())).thenReturn(Optional.of(returnpatient));
+        when(patientRepository.findById(anyInt())).thenReturn(Optional.of(returnpatient));
         Patient patient=patientSDJpaService.findById(1);
         assertNotNull(patient);
     }
 
     @Test
     void findByIdorFould() {
-        when(patientRepositories.findById(anyInt())).thenReturn(Optional.empty());
+        when(patientRepository.findById(anyInt())).thenReturn(Optional.empty());
         Patient patient=patientSDJpaService.findById(1);
         assertNull(patient);
     }
@@ -80,7 +80,7 @@ class PatientSDJpaServiceTest {
     void save() {
         Patient patient2=Patient.builder().id(1).build();
 
-        when(patientRepositories.save(any())).thenReturn(patient2);
+        when(patientRepository.save(any())).thenReturn(patient2);
 
         Patient savedpatient=patientSDJpaService.save(patient2);
 
@@ -92,11 +92,11 @@ class PatientSDJpaServiceTest {
     void delete() {
         patientSDJpaService.delete(returnpatient);
 
-        verify(patientRepositories,times(1)).delete(any());
+        verify(patientRepository,times(1)).delete(any());
     }
     @Test
     void deleteById() {
         patientSDJpaService.deleteById(1);
-        verify(patientRepositories).deleteById(anyInt());
+        verify(patientRepository).deleteById(anyInt());
     }
 }

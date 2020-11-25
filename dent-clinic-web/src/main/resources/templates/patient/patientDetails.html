@@ -7,25 +7,24 @@
 
 <table class="table table-striped" th:object="${patient}">
     <tr>
-        <th>Name</th>
+        <th>İsim Soyisim</th>
         <td><b th:text="*{firstName + ' ' + lastName}"></b></td>
     </tr>
     <tr>
-        <th>Address</th>
+        <th>Adres</th>
         <td th:text="*{adress}" /></td>
     </tr>
     <tr>
-        <th>City</th>
+        <th>Şehir</th>
         <td th:text="*{city}" /></td>
     </tr>
     <tr>
-        <th>Telephone</th>
+        <th>Telefon</th>
         <td th:text="*{telephone}" /></td>
     </tr>
 </table>
 
-<a th:href="@{{id}/update(id=${patient.id})}" class="btn btn-default">Edit
-    Patient</a>
+<a th:href="@{{id}/update(id=${patient.id})}" class="btn btn-default">Bilgileri Güncelle</a>
 <a th:href="@{{id}/tooths/new(id=${patient.id})}" class="btn btn-default">Yeni
     Tedavi</a>
 
@@ -60,8 +59,7 @@
                 </tr>
                 <tr>
                     <td><a
-                            th:href="@{{patientid}/tooths/{toothid}/update(patientid=${patient.id},toothid=${tooth.id})}">Edit
-                        Tooth</a></td>
+                            th:href="@{{patientid}/tooths/{toothid}/update(patientid=${patient.id},toothid=${tooth.id})}">Tedavi Güncelle</a></td>
                     <td><a
                             th:href="@{{patientid}/tooths/{toothid}/visits/new(patientid=${patient.id},toothid=${tooth.id})}">Tedavi
                         Ekle</a></td>

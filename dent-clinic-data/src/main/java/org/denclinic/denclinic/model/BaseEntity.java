@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 
 //JPA base class
 @Getter
@@ -16,7 +17,7 @@ import javax.persistence.MappedSuperclass;
 @NoArgsConstructor
 @AllArgsConstructor
 @MappedSuperclass
-public class BaseEntity {
+public class BaseEntity implements Serializable {
     //BASEENTITY DİĞER SINIFLAR İÇİN BASE CLASS, ID NUMARASININ OTOMATİK OLARAK ARTTIRILMASINI İSTİYORUZ:
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //AUTO-GENERATED ID NUMBER PRIMARY KEY

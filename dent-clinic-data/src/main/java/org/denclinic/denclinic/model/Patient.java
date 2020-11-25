@@ -35,5 +35,14 @@ public class Patient extends Person {
     private Set<Tooths> tooths = new HashSet<>();   //Hastanın dişleri var OneToMany bir hastanın çok dişi var
 
 
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "adress='" + adress + '\'' +
+                ", city='" + city + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", tooths=" + tooths +
+                '}';
+    }
 }
 //JPA persistence entity

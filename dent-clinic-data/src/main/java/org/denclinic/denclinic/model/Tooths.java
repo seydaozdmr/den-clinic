@@ -10,10 +10,16 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name="tooths")
 public class Tooths extends BaseEntity {
+    @Builder
+    public Tooths(Integer id,ToothType toothType,Patient patient,Set<Visit> visits){
+        super(id);
+        this.toothType=toothType;
+        this.patient=patient;
+        this.visits=visits;
+    }
 
     @ManyToOne
     @JoinColumn(name="type_id")
@@ -27,5 +33,11 @@ public class Tooths extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "tooths")
     private Set<Visit> visits=new HashSet<>();
 
-
+    @Override
+    public String toString() {
+        return "Tooths{" +
+                "toothType=" + toothType +
+                ", visits=" + visits +
+                '}';
+    }
 }
