@@ -37,7 +37,7 @@ public class ToothsController {
     public Collection<ToothType> populateToothTypes(){
         return toothTypeService.findAll();
     }
-
+    //Patient id'den hangi hasta olduğunu buluyor ve onu nesne olarak döndürüyor.
     @ModelAttribute("patient")
     public Patient findPatient (@PathVariable String patientid){
         System.out.println(patientid);
@@ -70,6 +70,7 @@ public class ToothsController {
         }
 
         */
+        //TODO hasta buraya post'dan geliyor mu kontrol et
         ToothType savedToothType=toothTypeService.save(tooth.getToothType());
         patient.getTooths().add(tooth);
         tooth.setPatient(patient);

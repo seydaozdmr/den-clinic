@@ -32,11 +32,11 @@ public class VisitController {
     @ModelAttribute("visit")
     public Visit loadToothWithVisit(@PathVariable("toothid") String toothid,@PathVariable("patientid") String patientid, Model model){
         Tooths tooth=toothService.findById(Integer.valueOf(toothid));
-        Patient patient=patientService.findById(Integer.valueOf(patientid));
+        //Patient patient=patientService.findById(Integer.valueOf(patientid));
         //System.out.println(tooth);
-        patient.getTooths().add(tooth);
+        //patient.getTooths().add(tooth);
         model.addAttribute("tooth",tooth);
-        model.addAttribute("patient",patient);
+        //model.addAttribute("patient",patient);
         Visit visit=new Visit();
         tooth.getVisits().add(visit);
         visit.setTooths(tooth);

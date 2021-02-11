@@ -17,7 +17,7 @@ public class Dentist extends Person {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "dentist_speciality",
             joinColumns = @JoinColumn(name = "dentist_id"),
-            inverseJoinColumns = @JoinColumn(name = "speviality_id"))
+            inverseJoinColumns = @JoinColumn(name = "speciality_id"))
     private Set<Speciality> speciality=new HashSet<>();
 
 
