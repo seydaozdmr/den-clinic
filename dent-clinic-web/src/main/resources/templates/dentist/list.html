@@ -13,6 +13,7 @@
             <th>Id</th>
             <th>İsim</th>
             <th>Soyisim</th>
+            <th>Uzmanlık</th>
         </tr>
         </thead>
         <tbody>
@@ -20,6 +21,8 @@
             <td th:text="${dentist?.id}">1</td>
             <td th:text="${dentist?.firstName}">Joe</td>
             <td th:text="${dentist?.lastName}">Buck</td>
+            <td><span th:each="specialty : ${dentist.speciality}" th:text="${specialty.description +' '}" />
+                <span th:if="${dentist?.speciality?.size() == 0}" >none</span> </td>
         </tr>
         </tbody>
     </table>
